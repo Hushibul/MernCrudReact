@@ -1,10 +1,12 @@
-import TextInput from "../components/inputs/TextInput";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
 import axios from "axios";
+import { useState } from "react";
+
+import TextInput from "../components/inputs/TextInput";
 
 const Register = () => {
-  const API_URL = "http://localhost:5000/api/users";
+  const [error, setError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -18,26 +20,20 @@ const Register = () => {
     mode: "onBlur",
   });
 
-  useEffect(() => {
-    const getdata = async () => {
-      const db = await axios
-        .get(API_URL)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
-    };
-    getdata();
-  }, []);
-
   const formSubmit = async (data) => {
-    console.log(data.username);
-    await axios
-      .post(API_URL, {
-        username: data.username,
-        email: data.email,
-        password: data.password,
+    const formData = await axios
+      .post(import.meta.env.VITE_REGISTER_API, {
+        username: data?.username,
+        email: data?.email,
+        password: data?.password,
       })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => res?.data)
+      .catch((err) => {
+        console.log(err);
+        setError(err?.response?.data?.message);
+      });
+
+    localStorage.setItem("token", formData?.token);
   };
   return (
     <form
@@ -84,12 +80,12 @@ const Register = () => {
           ...register("password", {
             required: { value: true, message: "Password is required" },
             minLength: {
-              value: 5,
-              message: "Password should be at least 5 character",
+              value: 4,
+              message: "Password should be at least 4 character",
             },
           }),
         }}
-        error={errors.password?.message}
+        error={error ? error : errors.password?.message}
       />
 
       <button
