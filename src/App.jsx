@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import PrivateRoute from "./routes/PrivateRoute";
 import Profile from "./pages/Profile";
 import AdminRoute from "./routes/AdminRoute";
-import DashBoard from "./pages/DashBoard";
+import DashBoard from "./pages/admin/DashBoard";
 
 function App() {
   const router = createBrowserRouter(
