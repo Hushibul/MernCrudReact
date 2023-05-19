@@ -7,7 +7,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   //== Get value from local storage
   const [storedToken, setStoredToken] = useLocalStorage("token:", "");
-  const [storedUserData, setStoredUserData] = useLocalStorage("user:", {});
+  const [storedUserData, setStoredUserData] = useLocalStorage("user:", null);
 
   const getToken = useCallback(() => {
     return storedToken;
@@ -15,8 +15,8 @@ const AuthProvider = ({ children }) => {
 
   //== Logout / SignOut functionality
   const logOut = useCallback(() => {
-    setStoredToken(null);
-    setStoredUserData({});
+    setStoredToken("");
+    setStoredUserData(null);
     window.location.replace("/");
     window.location.reload();
     // eslint-disable-next-line

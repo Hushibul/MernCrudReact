@@ -2,9 +2,12 @@ import React from "react";
 import { menu } from "../../assets/constants/constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { HiOutlineSearch } from "react-icons/hi";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
   const [searchValue, setSearchValue] = useState("");
+  const { storedUserData, logOut } = useAuth();
 
   return (
     <nav className="flex items-center bg-zinc-800 py-2">
@@ -33,17 +36,29 @@ const NavBar = () => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button className="px-4 py-2 rounded bg-white text-slate-700">
-          Search
+        <button>
+          <HiOutlineSearch className="text-white text-lg" />
         </button>
       </div>
 
-      <Link
-        to={"/login"}
-        className="ml-auto sm:ml-2 px-4 py-2 rounded-md bg-white text-slate-800 mr-12"
-      >
-        Login
-      </Link>
+      {storedUserData === null ? (
+        <Link
+          to={"/login"}
+          className="ml-auto sm:ml-2 px-4 py-2 rounded-md bg-white text-slate-800 mr-12"
+        >
+          Login
+        </Link>
+      ) : (
+        <div className="ml-auto items-center gap-3 flex">
+          <p className="text-white">{storedUserData?.username}</p>
+          <button
+            onClick={logOut}
+            className="ml-auto sm:ml-2 px-4 py-2 rounded-md bg-white text-slate-800 mr-12"
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </nav>
   );
 };
