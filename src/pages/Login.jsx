@@ -32,6 +32,7 @@ const Login = () => {
         password: data?.password,
       })
       .then((res) => {
+        console.log(res.data);
         return res?.data;
       })
       .catch((err) => {
