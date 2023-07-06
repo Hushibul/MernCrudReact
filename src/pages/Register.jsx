@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
+import { Link } from "react-router-dom";
 import TextInput from "../components/inputs/TextInput";
 
 const Register = () => {
@@ -38,7 +39,7 @@ const Register = () => {
   return (
     <form
       onSubmit={handleSubmit(formSubmit)}
-      className="h-fit w-96 bg-cyan-400 mx-auto p-4 rounded-md shadow-md border border-sky-500"
+      className="h-fit w-96 mx-auto p-8 rounded-md shadow shadow-black"
     >
       <h2 className="text-3xl text-pink-500 text-center font-bold uppercase">
         Register
@@ -88,8 +89,10 @@ const Register = () => {
         error={error ? error : errors.password?.message}
       />
 
+
+      <p className="text-white pt-4">Already Registered! <Link to={'/login'} className="text-teal font-bold ml-4 underline">Login</Link></p>  
       <button
-        className="px-4 py-2 font-bold rounded bg-pink-500 text-white my-6"
+        className="px-4 py-2 font-bold rounded bg-megent text-white my-6"
         type="submit"
       >
         Submit

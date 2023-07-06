@@ -1,6 +1,6 @@
-import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 
 const sortOrder = ["desc", "asc", "date-modified"];
@@ -41,8 +41,8 @@ const Users = () => {
   };
 
   //Getting All the users
-  useEffect(() => {
-    axios
+  const fetchDate = async () => {
+    await axios
       .get(import.meta.env.VITE_GET_ALL_USER, {
         params: {
           page: currentPage,
@@ -60,7 +60,11 @@ const Users = () => {
         setTotalPage(res.data.totalPage);
       })
       .catch((err) => console.log(err));
-  }, []);
+  };
+
+  useEffect(() => {
+    fetchDate();
+  }, [currentPage]);
 
   //Updating User
   const updateUser = async (objectId) => {
@@ -126,10 +130,9 @@ const Users = () => {
     window.location.reload();
   };
 
-  console.log(totalPage, currentPage);
-
   return (
-    <>
+    <div className="px-6 lg:p-28">
+    <h2 className="text-3xl text-teal text-center font-bold">Users Dashboard</h2>
       <form
         className="flex gap-4 items-center mt-4"
         onSubmit={handleSubmit(formSubmit)}
@@ -142,7 +145,7 @@ const Users = () => {
           render={({ field }) => (
             <select
               {...field}
-              className="mb-3 cursor-pointer rounded block px-4 border-2 border-sky-600 focus:outline-sky-600 py-2"
+              className="mb-3 cursor-pointer rounded block px-4 font-bold bg-darkNavy focus-within:outline-none py-2"
             >
               {sortOrder.map((item, index) => (
                 <option key={index} value={item}>
@@ -154,7 +157,7 @@ const Users = () => {
         />
         <button
           type="submit"
-          className="bg-sky-600 mb-3 uppercase font-semibold text-white px-4 py-2 rounded-md"
+          className="bg-megent mb-3 uppercase font-semibold text-white px-4 py-2 rounded-md"
         >
           Filter
         </button>
@@ -166,12 +169,12 @@ const Users = () => {
             className="bg-slate-900 relative flex gap-4 px-4 py-2 items-center rounded-md mb-2"
             key={item._id}
           >
-            <p className="p-2 bg-white rounded-full">{index + 1}</p>
+            <p className="w-6 h-6 font-bold text-center bg-darkNavy rounded-full">{index + 1}</p>
             <h4 className="text-white w-40 truncate font-bold">
               {item.username}
             </h4>
 
-            <h4 className="text-white w-40 truncate font-bold">
+            <h4 className={`text-white py-2 text-center w-40 rounded-lg truncate font-bold ${item.isAdmin ? "bg-teal": 'bg-yellow'}`}>
               {item.isAdmin ? "Admin" : "User"}
             </h4>
 
@@ -182,13 +185,13 @@ const Users = () => {
             >
               <button
                 onClick={promoteToAdmin}
-                className="bg-green-500 px-2 uppercase font-semibold text-xs text-white py-1 rounded-sm"
+                className="bg-teal px-2 uppercase font-semibold text-xs text-white py-1 rounded-sm"
               >
                 Admin
               </button>
               <button
                 onClick={demoteToUser}
-                className="bg-red-500 px-2 uppercase text-xs font-semibold text-white py-1 rounded-sm"
+                className="bg-danger px-2 uppercase text-xs font-semibold text-white py-1 rounded-sm"
               >
                 User
               </button>
@@ -196,20 +199,20 @@ const Users = () => {
 
             <button
               onClick={() => setEditUser(index)}
-              className="bg-sky-600 uppercase font-semibold text-white px-4 py-2 rounded"
+              className="bg-blue uppercase font-semibold text-white px-4 py-2 rounded"
             >
               Edit
             </button>
             <button
               onClick={() => deleteUser(item._id)}
-              className="bg-red-500 uppercase font-semibold text-white px-4 py-2 rounded"
+              className="bg-danger uppercase font-semibold text-white px-4 py-2 rounded"
             >
               Delete
             </button>
             <button
               disabled={editUser === null ? true : false}
               onClick={() => updateUser(item._id)}
-              className="bg-green-500 uppercase font-semibold text-white px-4 py-2 rounded"
+              className="bg-teal uppercase font-semibold text-white px-4 py-2 rounded"
             >
               Save
             </button>
@@ -219,7 +222,7 @@ const Users = () => {
         <div className="flex justify-between">
           <button
             onClick={handlePrev}
-            className="px-4 py-2 rounded bg-sky-600 text-white"
+            className="px-4 py-2 rounded bg-blue text-white"
           >
             Prev
           </button>
@@ -229,13 +232,13 @@ const Users = () => {
           ))} */}
           <button
             onClick={handleNext}
-            className="px-4 py-2 rounded bg-sky-600 text-white"
+            className="px-4 py-2 rounded bg-blue text-white"
           >
             Next
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

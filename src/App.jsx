@@ -5,15 +5,15 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RootLayout from "./components/layouts/RootLayout";
+import DashBoard from "./pages/admin/DashBoard";
+import Products from "./pages/admin/Products";
+import Users from "./pages/admin/Users";
+import Profile from "./pages/auth//Profile";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import PrivateRoute from "./routes/PrivateRoute";
-import Profile from "./pages/Profile";
 import AdminRoute from "./routes/AdminRoute";
-import DashBoard from "./pages/admin/DashBoard";
-import Users from "./pages/admin/Users";
-import Products from "./pages/admin/Products";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   const router = createBrowserRouter(

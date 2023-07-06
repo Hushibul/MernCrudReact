@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 
-import TextInput from "../components/inputs/TextInput";
 import decode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
+import TextInput from "../components/inputs/TextInput";
 
 const Login = () => {
   const { storedToken, setStoredToken, setStoredUserData } = useAuth();
@@ -56,10 +56,10 @@ const Login = () => {
   return (
     <form
       onSubmit={handleSubmit(formSubmit)}
-      className="h-fit mt-20 mx-4 w-auto sm:w-96 sm:mx-auto p-2 md:px-6 md:py-4 bg-slate-100 rounded-md shadow-md border border-sky-500"
+      className="h-fit mt-20 mx-4 w-auto sm:w-96 sm:mx-auto p-2 md:px-6 md:py-4 rounded-md shadow shadow-black"
     >
       <div>
-        <h2 className="text-3xl text-sky-600 text-center font-bold uppercase">
+        <h2 className="text-3xl text-center font-bold uppercase">
           Login
         </h2>
 
@@ -99,20 +99,20 @@ const Login = () => {
         <p className="text-gray-600 mt-3">
           Don't have an accout yet?
           <Link
-            className="ml-4 underline text-sky-800 font-bold"
+            className="ml-4 underline text-teal font-bold"
             to={"/register"}
           >
             Sign Up
           </Link>
         </p>
         <button
-          className="px-4 py-2 rounded bg-sky-600 text-white my-6"
+          className="px-4 py-2 rounded bg-megent text-white my-6"
           type="submit"
         >
           Submit
         </button>
         <button
-          className="px-4 py-2 ml-4 rounded bg-red-500 text-white my-6"
+          className="px-4 py-2 ml-4 rounded bg-danger text-white my-6"
           onClick={() => localStorage.removeItem("token")}
         >
           Clear
