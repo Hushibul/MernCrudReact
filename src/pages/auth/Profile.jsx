@@ -37,23 +37,24 @@ const Profile = () => {
     response();
   }, []);
 
-  const formSubmit = async (data) => {
-    const formdata = await axios
+  const formSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("username", data.username);
+    formData.append("email", data.email);
+    formData.append("avatar", data?.avatar[0]);
+    console.log(formData);
+    axios
       .put(
         `${import.meta.env.VITE_EDIT_PROFILE}/${decodedToken._id}`,
-        {
-          username: data?.username,
-          email: data?.email,
-          avatar: data?.avatar,
-        },
+        formData,
         {
           headers: {
             token: `Bearer ${storedToken}`,
-            "Content-Type": `multipart/form-data`,
           },
         }
       )
       .then((res) => {
+        console.log(res);
         return res?.data;
       })
       .catch((err) => {
@@ -62,14 +63,16 @@ const Profile = () => {
       });
   };
 
+  console.log(userData?.data?.avatar);
+
   return (
     <div className="p-10">
-      <form
-        action="http://localhost:5000/api/auth/profile"
-        onSubmit={handleSubmit(formSubmit)}
-        encType="multipart/form-data"
-        method="post"
-      >
+      <img
+        className="w-20 h-20"
+        src={`${import.meta.env.VITE_API_URL}/${userData?.data?.avatar}`}
+        alt={`${userData?.data?.username} avatar`}
+      />
+      <form onSubmit={handleSubmit(formSubmit)}>
         <TextInput
           label="Username"
           id={"username"}
