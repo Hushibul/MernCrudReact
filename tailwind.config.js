@@ -19,7 +19,16 @@ module.exports = {
       purple: "#6f42c1",
       indigo: "#6610f2",
       blue: "#0d6efd",
-      gray: "#adb5bd",
+      gray: "#666",
+      shadowSlate: "#cbd5e1",
+    },
+    container: {
+      padding: {
+        DEFAULT: "16px",
+        sm: "32px",
+        lg: "64px",
+        xl: "80px",
+      },
     },
     screens: {
       sm: "576px",

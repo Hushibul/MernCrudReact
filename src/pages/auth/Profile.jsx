@@ -7,7 +7,7 @@ import TextInput from "../../components/inputs/TextInput";
 import useAuth from "../../hooks/useAuth";
 
 const Profile = () => {
-  const { storedToken } = useAuth();
+  const { storedToken, setStoredUserData } = useAuth();
   const decodedToken = decode(storedToken);
   console.log(decodedToken._id);
 
@@ -33,6 +33,7 @@ const Profile = () => {
         `${import.meta.env.VITE_GET_ALL_USER}/${decodedToken._id}`
       );
       setUserData(data);
+      setStoredUserData(data?.data);
     };
     response();
   }, []);
@@ -64,6 +65,7 @@ const Profile = () => {
   };
 
   console.log(userData?.data?.avatar);
+  console.log(`${import.meta.env.VITE_API_URL}/${userData?.data?.avatar}`);
 
   return (
     <div className="p-10">

@@ -9,8 +9,6 @@
 /* Basic Stylings  */
 @layer base {
   body {
-    @apply bg-navy;
     font-family: "Quicksand", sans-serif;
-    color: white;
   }
 }

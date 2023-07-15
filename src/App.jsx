@@ -10,7 +10,6 @@ import Products from "./pages/admin/Products";
 import Users from "./pages/admin/Users";
 import Profile from "./pages/auth//Profile";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminRoute from "./routes/AdminRoute";
 import PrivateRoute from "./routes/PrivateRoute";
@@ -19,7 +18,6 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />

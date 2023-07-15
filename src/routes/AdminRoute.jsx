@@ -1,6 +1,6 @@
-import { Outlet, Navigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import decode from "jwt-decode";
+import { Navigate, Outlet } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const AdminRoute = () => {
   const { storedToken } = useAuth();
@@ -9,7 +9,7 @@ const AdminRoute = () => {
   return storedToken !== "" && decodedToken?.isAdmin ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/" />
   );
 };
 

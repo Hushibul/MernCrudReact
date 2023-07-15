@@ -6,16 +6,26 @@ export const menu = [
   },
   {
     id: 2,
-    name: "About",
-    path: "/about",
+    name: "Shop",
+    path: "/shop",
   },
   {
     id: 3,
-    name: "Products",
-    path: "/products",
+    name: "Vendors",
+    path: "/vendors",
   },
   {
     id: 4,
+    name: "Blog",
+    path: "/blog",
+  },
+  {
+    id: 5,
+    name: "About Us",
+    path: "/about-us",
+  },
+  {
+    id: 6,
     name: "Contact Us",
     path: "/contact-us",
   },
