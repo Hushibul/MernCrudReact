@@ -54,7 +54,7 @@ const Login = ({ openLoginModal, setOpenLoginModal }) => {
   };
 
   const handleGoogle = () => {
-    window.open("http://localhost:5000/auth/google");
+    window.location.assign("http://localhost:5000/auth/google");
   };
 
   return (
@@ -63,7 +63,7 @@ const Login = ({ openLoginModal, setOpenLoginModal }) => {
         onSubmit={handleSubmit(formSubmit)}
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-white h-fit mt-20 mx-4 w-auto sm:w-[500px] sm:mx-auto sm:h-[500px] md:px-20 md:py-10 rounded-md shadow shadow-shadowSlate"
       >
-        <div className="absolute top-6 right-6">
+        <div className="absolute cursor-pointer top-6 right-6">
           <XLg onClick={() => setOpenLoginModal(false)} size={25} />
         </div>
         <h2 className="text-3xl text-center text-gray font-bold uppercase">
@@ -105,6 +105,13 @@ const Login = ({ openLoginModal, setOpenLoginModal }) => {
           }}
           error={error ? error : errors.password?.message}
         />
+
+        <button
+          onClick={handleGoogle}
+          className="p-2 my-6 w-full rounded font-bold bg-danger text-white"
+        >
+          Sign Up With Google
+        </button>
 
         <p className="text-gray font-bold mt-3">
           Don't have an accout yet?

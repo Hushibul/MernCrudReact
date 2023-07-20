@@ -14,19 +14,16 @@ import { Link } from "react-router-dom";
 import { menu } from "../../assets/constants/constants";
 import AvatarConstantImage from "../../assets/images/avatar_image.png";
 import useAuth from "../../hooks/useAuth";
-import Login from "../modals/Login";
+import Login from "../modals/LoginModal";
+import SearchModal from "../modals/SearchModal";
 
 const NavBar = () => {
   const [searchValue, setSearchValue] = useState("");
   const [openMenu, setOpenMenu] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openSearchModal, setOpenSearchModal] = useState(false);
   const { storedUserData, logOut } = useAuth();
-
-  console.log(storedUserData?.avatar);
-
-  const avatarUrl = `${import.meta.env.VITE_API_URL}/${storedUserData?.avatar}`;
-  console.log(avatarUrl);
 
   return (
     <>
@@ -99,24 +96,31 @@ const NavBar = () => {
 
         <ul className="flex items-center justify-center ml-auto gap-x-1 mr-2 md:mr-8 md:gap-x-4">
           <li className="cursor-pointer">
-            <Search size={20} />
+            <button onClick={() => setOpenSearchModal(true)}>
+              <Search size={20} />
+            </button>
           </li>
           <li className="cursor-pointer relative">
             {storedUserData !== null && storedUserData?.avatar ? (
               <img
                 className="w-10 h-10 rounded-full overflow-hidden"
                 onClick={() => setProfileMenu(true)}
-                src={avatarUrl}
+                src={`${import.meta.env.VITE_API_URL}/${
+                  storedUserData?.avatar
+                }`}
                 alt={storedUserData?.name}
               />
             ) : storedUserData !== null ? (
               <img
                 className="w-10 h-10 rounded-full overflow-hidden"
+                onClick={() => setProfileMenu(true)}
                 src={AvatarConstantImage}
                 alt="Avatar Image"
               />
             ) : (
-              <Person onClick={() => setOpenLoginModal(true)} size={20} />
+              <button onClick={() => setOpenLoginModal(true)}>
+                <Person size={20} />
+              </button>
             )}
 
             <div
@@ -132,13 +136,13 @@ const NavBar = () => {
               </button>
             </div>
           </li>
-          <li className="cursor-pointer">
+          <li className="cursor-pointer mr-6">
             <Link to={"/cart"}>
               <Cart size={20} />
             </Link>
           </li>
           <li
-            className="cursor-pointer absolute top-11 right-0 md:hidden"
+            className="cursor-pointer absolute top-11 sm:top-9 right-4 md:hidden"
             onClick={() => setOpenMenu(!openMenu)}
           >
             {!openMenu ? <List size={24} /> : <XLg size={24} />}
@@ -150,6 +154,13 @@ const NavBar = () => {
         <Login
           openLoginModal={openLoginModal}
           setOpenLoginModal={setOpenLoginModal}
+        />
+      )}
+
+      {openSearchModal && (
+        <SearchModal
+          openSearchModal={openSearchModal}
+          setOpenSearchModal={setOpenSearchModal}
         />
       )}
     </>
