@@ -1,5 +1,5 @@
-import React, { createContext, useCallback, useLayoutEffect } from "react";
 import decode from "jwt-decode";
+import { createContext, useCallback, useLayoutEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext(null);

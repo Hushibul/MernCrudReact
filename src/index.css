@@ -12,3 +12,115 @@
     font-family: "Quicksand", sans-serif;
   }
 }
+
+/* Swiper Navigations */
+.swiper-slider > .swiper-button-next,
+.swiper-slider > .swiper-button-prev {
+  width: 60px;
+  height: 60px;
+  color: gray;
+  background: white;
+}
+
+.card-slider > .swiper-button-next,
+.card-slider > .swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(44, 39, 39);
+  color: white;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  border-radius: 50%;
+
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.swiper-button-prev {
+  transform: translateX(16px);
+}
+.swiper-button-next {
+  transform: translateX(-16px);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-family: swiper-icons;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+}
+
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  left: 0px;
+  right: auto;
+}
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+  content: "prev";
+}
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  right: 0px;
+  left: auto;
+}
+.swiper-button-next:after,
+.swiper-container-rtl .swiper-button-prev:after {
+  content: "next";
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* Swiper Pagination Styles  */
+.swiper-pagination {
+  bottom: 40px !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+  width: 80px !important;
+  height: 2px !important;
+  border-radius: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+}

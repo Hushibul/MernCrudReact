@@ -61,7 +61,7 @@ const Login = ({ openLoginModal, setOpenLoginModal }) => {
     <>
       <form
         onSubmit={handleSubmit(formSubmit)}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-white h-fit mt-20 mx-4 w-auto sm:w-[500px] sm:mx-auto sm:h-[500px] md:px-20 md:py-10 rounded-md shadow shadow-shadowSlate"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-white h-fit mt-20 w-full sm:w-[500px] sm:mx-auto sm:h-[500px] p-6  md:px-20 md:py-10 rounded-md shadow shadow-shadowSlate"
       >
         <div className="absolute cursor-pointer top-6 right-6">
           <XLg onClick={() => setOpenLoginModal(false)} size={25} />

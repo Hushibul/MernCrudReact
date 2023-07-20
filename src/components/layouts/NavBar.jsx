@@ -84,7 +84,7 @@ const NavBar = () => {
 
         <ul
           className={`md:flex gap-x-4 md:flex-row md:ml-20 ${
-            openMenu ? "flex gap-x-4 items-center flex-col" : "hidden"
+            openMenu ? "flex gap-x-4 items-center order-3 flex-col" : "hidden"
           }`}
         >
           {menu.map((item) => (
@@ -136,7 +136,7 @@ const NavBar = () => {
               </button>
             </div>
           </li>
-          <li className="cursor-pointer mr-6">
+          <li className="cursor-pointer mb-2 mr-6">
             <Link to={"/cart"}>
               <Cart size={20} />
             </Link>
